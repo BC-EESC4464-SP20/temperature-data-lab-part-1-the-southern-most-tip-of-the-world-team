@@ -34,7 +34,7 @@ plot (stationdata.Year, stationdata.Jan)
 % mean and std functions --> can you tell why? use the functions nanmean
 % and nanstd to avoid this issue.
 
-%monthMean = stationdata.Jan/104
+monthMean = stationdata.Jan/104
 monthStd = 
 monthMin = 
 monthMax =
