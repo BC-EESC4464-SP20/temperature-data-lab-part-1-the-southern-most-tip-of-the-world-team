@@ -84,8 +84,6 @@ end
 
 
 %% 5a. Calculate the annual mean temperature for each year
-%mean(tempData,2) mean temperature for each year ,, annually 
-
 for i = 1:10
 annualMean = nanmean(tempData(94+i,:))
 end
