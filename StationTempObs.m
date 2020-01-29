@@ -8,7 +8,6 @@
 %% 1a. Read in the file for your station as a data table
 filename = '859340.csv'; %change this to select a different station
 stationdata = readtable(filename);
-
 %% 1b-c. Investigate the data you are working with
 %Click in the workspace to open up the new table named stationdata. You
 %should be able to see headers for each column in the table.
@@ -26,37 +25,44 @@ stationlon = -70.85 %W
 % Make a plot for all data from January with year on the x-axis and
 % temperature on the y-axis. You will want this plot to have individual
 % point markers rather than a line connecting each data point.
-plot (stationdata.Year, stationdata.Jan)
 
+plot(stationdata.Year,stationdata.Jan, "ro")
 
 % Calculate the monthly mean, minimum, maximum, and standard deviation
 % note: some of these values will come out as NaN is you use the regular
 % mean and std functions --> can you tell why? use the functions nanmean
 % and nanstd to avoid this issue.
 
-%monthMean = stationdata.Jan/104
-monthStd = 
-monthMin = 
-monthMax =
+monthMean = nanmean(stationdata.Jan)
+monthStd = nanstd(stationdata.Jan)
+monthMin = min(stationdata.Jan)
+monthMax = max(stationdata.Jan)
 
 %% 3. Calculate the annual climatology
 % Extract the monthly temperature data from the table and store it in an
 % array, using the function table2array
+
 tempData = table2array(stationdata(:,4:15));
+
 
 %Calculate the mean, standard deviation, minimum, and maximum temperature
 %for every month. This will be similar to what you did above for a single
 %month, but now applied over all months simultaneously.
-% --> tempMean =
-% --> tempStd =
-% --> tempMin =
-% --> tempMax =
+tempMean = nanmean(tempData)
+tempStd = nanstd(tempData)
+tempMin = min(tempData)
+tempMax = max(tempData)
 
 %Use the plotting function "errorbar" to plot the monthly climatology with
 %error bars representing the standard deviation. Add a title and axis
 %labels. Use the commands "axis", "xlim", and/or "ylim" if you want to
 %change from the automatic x or y axis limits.
     figure(1); clf
+    plot(tempMean)
+    errorbar(tempMean,tempStd)
+    title("Average Temperature per Month from 1888 to 1991 ")
+    ylabel("Average Temperature (°C)")
+    xlabel("Month")
 % --> (note that this may take multiple lines of code)
 
 %% 4. Fill missing values with the monthly climatological value
@@ -64,16 +70,24 @@ tempData = table2array(stationdata(:,4:15));
 % corresponding climatological mean value calculated above.
 
 % We can do this by looping over each month in the year:
-for i = 1:12
+for i=(1:12)
+    indnan = find(isnan(tempData(:,i)) == 1)
+    tempData(indnan,i)= tempMean(i)   
+
+end 
+    
+    
     %use the find and isnan functions to find the index location in the
     %array of data points with NaN values
-    indnan = find(isnan(tempData(:,i)) == 1); %check to make sure you understand what is happening in this line
+    %check to make sure you understand what is happening in this line
     %now fill the corresponding values with the climatological mean
-    % --> 
-end
+
 
 %% 5a. Calculate the annual mean temperature for each year
-% --> 
+for i = 1:10
+annualMean= nanmean(tempData(94+i,:))
+end
+
 
 %% 5b-c. Calculate the temperature anomaly for each year, compared to the 1981-2000 mean
 % The anomaly is the difference from the mean over some baseline period. In
