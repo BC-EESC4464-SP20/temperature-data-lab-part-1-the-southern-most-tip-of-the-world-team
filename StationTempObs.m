@@ -72,7 +72,8 @@ tempMax = max(tempData)
 % We can do this by looping over each month in the year:
 for i=(1:12)
     indnan = find(isnan(tempData(:,i)) == 1)
-    tempData(indnan,i)= tempMean(i)   
+    tempData(indnan,i)= tempMean(i)
+    
 
 end 
     
@@ -84,11 +85,7 @@ end
 
 
 %% 5a. Calculate the annual mean temperature for each year
-%mean(tempData,2) mean temperature for each year ,, annually 
-
-for i = 1:10
-annualMean = nanmean(tempData(94+i,:))
-end
+annualmean=mean(tempData,2) % mean temperature for each year ,, annually 
 
 
 %% 5b-c. Calculate the temperature anomaly for each year, compared to the 1981-2000 mean
@@ -96,6 +93,12 @@ end
 % this case, we will pick the baseline period as 1981-2000 for consistency
 % across each station (though note that this is a choice we are making, and
 % that different temperature analyses often pick different baselines!)
+
+Year = stationdata.Year
+g=find((Year>=1981)&(Year<= 2000))
+
+
+
 
 %Calculate the annual mean temperature over the period from 1981-2000
   %Use the find function to find rows contain data where stationdata.Year is between 1981 and 2000
