@@ -73,7 +73,6 @@ tempMax = max(tempData)
 for i=(1:12)
     indnan = find(isnan(tempData(:,i)) == 1)
     tempData(indnan,i)= tempMean(i)
-    
 
 end 
     
@@ -94,11 +93,9 @@ annualmean=mean(tempData,2) % mean temperature for each year ,, annually
 % across each station (though note that this is a choice we are making, and
 % that different temperature analyses often pick different baselines!)
 
-Year = stationdata.Year
-g=find((Year>=1981)&(Year<= 2000))
-
-
-
+Year = stationdata.Year;
+baselineYear =find((Year>=1981)&(Year<= 2000));
+baselineMean = mean(annualmean(baselineYear)) %% how do they know each other?
 
 %Calculate the annual mean temperature over the period from 1981-2000
   %Use the find function to find rows contain data where stationdata.Year is between 1981 and 2000
@@ -108,21 +105,28 @@ g=find((Year>=1981)&(Year<= 2000))
 
 %Calculate the annual mean temperature anomaly as the annual mean
 %temperature for each year minus the baseline mean temperature
-% -->
+TempAnnMeanAnomaly = annualmean - baselineMean
+    %for all the years?
 
 %% 6a. Plot the annual temperature anomaly over the full observational record
 figure(2); clf
 %Make a scatter plot with year on the x axis and the annual mean
 %temperature anomaly on the y axis
-% -->  
+scat = scatter(Year,TempAnnMeanAnomaly)
 
 %% 6b. Smooth the data by taking a 5-year running mean of the data to plot
 %This will even out some of the variability you observe in the scatter
 %plot. There are many methods for filtering data, but this is one of the
 %most straightforward - use the function movmean for this. For information
 %about how to use this function, type "help movmean" in the command window.
-% --> 
+%Y = movmean(scat(TempAnnMeanAnomaly, 5))
 
+ t = 1:5:104;
+        x = Year
+        yc = movmean(x,5);
+        plot(t,x,t,yc);
+       %help plz
+        
 %Now add a line with this smoothed data to the scatter plot
 % --> 
 
