@@ -113,7 +113,7 @@ figure(2); clf
 %Make a scatter plot with year on the x axis and the annual mean
 %temperature anomaly on the y axis
 scat = scatter(Year,TempAnnMeanAnomaly)
-hold on
+
 %% 6b. Smooth the data by taking a 5-year running mean of the data to plot
 %This will even out some of the variability you observe in the scatter
 %plot. There are many methods for filtering data, but this is one of the
@@ -122,8 +122,11 @@ hold on
 movmeanavg = movmean(TempAnnMeanAnomaly, 5)
 plot(Year,movmeanavg, "r-")
 
-%Now add a line with this smoothed data to the scatter plot
 
+        
+%Now add a line with this smoothed data to the scatter plot
+hold on
+plot(Year, movmeanavg, "b.")
 
 
 %% 7. Add and plot linear trends for whole time period, and for 1960 to today
@@ -148,9 +151,7 @@ P_recent = polyfit (Year(indrecent:end), TempAnnMeanAnomaly(indrecent:end),1)
 %anomaly plot (you can do this either directly using the slope and intercept
 %values calculated with polyfit, or using the polyval function).
 %Plot each new line in a different color.
-x = Year
-y = P_all(1)*x +P_all(2)
-plot(x,y)
+x = 
 
 % Add a legend, axis labels, and a title to your temperature anomaly plot
 % --> 
