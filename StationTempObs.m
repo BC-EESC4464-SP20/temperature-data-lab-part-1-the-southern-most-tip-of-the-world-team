@@ -142,9 +142,9 @@ P_all = polyfit (Year, TempAnnMeanAnomaly, 1)
     %1960 to the end of the observational period
     % Hint: start by finding the index for where 1960 is in the list of
     % years
- 
+RecentYear = 1960;
 indrecent = find(Year == RecentYear);
-P_recent = polfit(Year(indrecent:end), TempAnnMeanAnomaly(indrecent:end)' , 1)
+P_recent = polyfit (Year(indrecent:end), TempAnnMeanAnomaly(indrecent:end),1)
 
 
 %Add lines for each of these linear trends on the annual temperature
