@@ -6,7 +6,7 @@
 % your own line of code to accomplish the next task.
 
 %% 1a. Read in the file for your station as a data table
-filename = '40300.csv'; %change this to select a different station
+filename = '859340.csv'; %change this to select a different station
 stationdata = readtable(filename);
 %% 1b-c. Investigate the data you are working with
 %Click in the workspace to open up the new table named stationdata. You
