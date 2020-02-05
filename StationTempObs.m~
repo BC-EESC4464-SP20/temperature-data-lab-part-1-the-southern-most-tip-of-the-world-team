@@ -105,7 +105,7 @@ baselineMean = mean(annualmean(baselineYear)) %% how do they know each other?
 
 %Calculate the annual mean temperature anomaly as the annual mean
 %temperature for each year minus the baseline mean temperature
-TempAnnMeanAnomaly = annualmean- baselineMean
+TempAnnMeanAnomaly = annualmean - baselineMean
     %for all the years?
 
 %% 6a. Plot the annual temperature anomaly over the full observational record
@@ -119,16 +119,12 @@ scat = scatter(Year,TempAnnMeanAnomaly)
 %plot. There are many methods for filtering data, but this is one of the
 %most straightforward - use the function movmean for this. For information
 %about how to use this function, type "help movmean" in the command window.
-%Y = movmean(scat(TempAnnMeanAnomaly, 5))
-
- t = 1:104;
-        x = Year
-        yc = movmean(x,5);
-        scatter(t,x,t,yc);
-       %help plz
+Y = movmean(TempAnnMeanAnomaly, 5)
+plot(Year,Y, "-")
         
 %Now add a line with this smoothed data to the scatter plot
-% --> 
+hold on
+
 
 %% 7. Add and plot linear trends for whole time period, and for 1960 to today
 %Here we will use the function polyfit to calculate a linear fit to the data
@@ -136,12 +132,14 @@ scat = scatter(Year,TempAnnMeanAnomaly)
 %read the documentation at https://www.mathworks.com/help/matlab/data_analysis/linear-regression.html
     %use polyfit to calculate the slope and intercept of a best fit line
     %over the entire observational period
-% --> 
+P_all = polyfit(Year, tempAnnMeanAnomaly',1)
+
     %also calculate the slope and intercept of a best fit line just from
     %1960 to the end of the observational period
     % Hint: start by finding the index for where 1960 is in the list of
     % years
-% --> 
+indrecent = find(Year == RecentYear);
+P_recent = polfit(Year(indrecent:end)), tempAnnMwNnomly(indrecent:end)'
 
 %Add lines for each of these linear trends on the annual temperature
 %anomaly plot (you can do this either directly using the slope and intercept
