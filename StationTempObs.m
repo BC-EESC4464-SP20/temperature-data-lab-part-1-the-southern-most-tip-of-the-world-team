@@ -120,10 +120,13 @@ scat = scatter(Year,TempAnnMeanAnomaly)
 %most straightforward - use the function movmean for this. For information
 %about how to use this function, type "help movmean" in the command window.
 Y = movmean(TempAnnMeanAnomaly, 5)
-plot(Year,Y, "-")
+plot(Year,Y, "r-")
+
+
         
 %Now add a line with this smoothed data to the scatter plot
 hold on
+plot(Year, Y, "b.")
 
 
 %% 7. Add and plot linear trends for whole time period, and for 1960 to today
@@ -132,12 +135,14 @@ hold on
 %read the documentation at https://www.mathworks.com/help/matlab/data_analysis/linear-regression.html
     %use polyfit to calculate the slope and intercept of a best fit line
     %over the entire observational period
-P_all = polyfit(Year, TempAnnMeanAnomaly', 1)
+P_all = polyfit (Year, TempAnnMeanAnomaly, 1)
+
 
     %also calculate the slope and intercept of a best fit line just from
     %1960 to the end of the observational period
     % Hint: start by finding the index for where 1960 is in the list of
     % years
+ 
 indrecent = find(Year == RecentYear);
 P_recent = polfit(Year(indrecent:end), TempAnnMeanAnomaly(indrecent:end)' , 1)
 
