@@ -95,7 +95,7 @@ annualmean=mean(tempData,2) % mean temperature for each year ,, annually
 
 Year = stationdata.Year;
 baselineYear =find((Year>=1981)&(Year<= 2000));
-baselineMean = mean(annualmean(baselineYear)) %% how do they know each other?
+baselineMean = mean(annualmean(baselineYear)) 
 
 %Calculate the annual mean temperature over the period from 1981-2000
   %Use the find function to find rows contain data where stationdata.Year is between 1981 and 2000
@@ -106,7 +106,8 @@ baselineMean = mean(annualmean(baselineYear)) %% how do they know each other?
 %Calculate the annual mean temperature anomaly as the annual mean
 %temperature for each year minus the baseline mean temperature
 TempAnnMeanAnomaly = annualmean - baselineMean
-    %for all the years?
+
+
 
 %% 6a. Plot the annual temperature anomaly over the full observational record
 figure(2); clf
@@ -152,5 +153,26 @@ x = Year
 y = P_all(1)*x +P_all(2)
 plot(x,y)
 
+x = Year
+y = P_recent(1)*x +P_recent(2)
+plot(x,y)
+
+hold off
 % Add a legend, axis labels, and a title to your temperature anomaly plot
-% --> 
+
+% % Extension: annuanl mean summer and winter, summer and winter anomaly, and trend
+% lines for summer and winter
+
+%winter = dec, jan, feb // summer = jun, july, aug
+
+Winter = mean(tempData(:,1)+tempData(:,2)+tempData(:,12))/3
+
+
+
+meanwinter= mean(Winter)
+
+
+
+
+
+
