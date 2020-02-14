@@ -159,20 +159,35 @@ plot(x,y)
 
 hold off
 % Add a legend, axis labels, and a title to your temperature anomaly plot
+% winter = dec, jan, feb // summer = jun, july, aug
 
-% % Extension: annuanl mean summer and winter, summer and winter anomaly, and trend
+%% 
+
+%%Extension: annuanl mean summer and winter, summer and winter anomaly, and trend
 % lines for summer and winter
 
-%winter = dec, jan, feb // summer = jun, july, aug
+summer=NaN(length(tempData),3)
 
-Winter = mean(tempData(:,1)+tempData(:,2)+tempData(:,12))/3
+for i=1:104
+
+summer=[tempData(:,1),tempData(:,2),tempData(:,12)]
+
+yearlysummer_mean= mean(summer(i:,1:3))
+end 
+% summer_mean=mean(monthlysummer_mean(1:3))
+
+% TempSummerMeanAnomaly = summer_mean - baselineMean
+%want 104 differnt summer means to subtact -baseline
+% P_summer = polyfit (Year, TempSummerMeanAnomaly, 1)
 
 
 
-meanwinter= mean(Winter)
+% winter=NaN(length(tempData),3)
+% winter=[tempData(:,6),tempData(:,7),tempData(:,8)]
+% monthlywinter_mean= mean(winter(:,1:3))
+% winter_mean=mean(monthlywinter_mean(1:3))
 
-
-
-
-
+% TempWinterMeanAnomaly = winter_mean - baselineMean
+% 
+% P_winter = polyfit (Year, TempWinterMeanAnomaly, 1)
 
