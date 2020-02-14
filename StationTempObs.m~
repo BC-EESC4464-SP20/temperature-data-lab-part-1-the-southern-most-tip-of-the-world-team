@@ -173,6 +173,7 @@ TempSummerMeanAnomaly = yearlysummer_mean - baselineMean
 P_summer = polyfit (Year, TempSummerMeanAnomaly, 1)
 
 
+
 winter=NaN(length(tempData),3);
 winter=[tempData(:,6),tempData(:,7),tempData(:,8)];
 yearlywinter_mean= mean(winter(1:104,:),2)
