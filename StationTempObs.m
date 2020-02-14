@@ -1,5 +1,4 @@
-%% Add your names in a comment here at the beginning of the code!
-
+%% Sarah Ashebir and Gaby Reiter 
 % Instructions: Follow through this code step by step, while also referring
 % to the overall instructions and questions from the lab assignment sheet.
 % Everywhere you see "% -->" is a place where you will need to write in
@@ -57,26 +56,22 @@ tempMax = max(tempData)
 %error bars representing the standard deviation. Add a title and axis
 %labels. Use the commands "axis", "xlim", and/or "ylim" if you want to
 %change from the automatic x or y axis limits.
+% --> (note that this may take multiple lines of code)
     figure(1); clf
     plot(tempMean)
     errorbar(tempMean,tempStd)
     title("Average Temperature per Month from 1888 to 1991 ")
     ylabel("Average Temperature (°C)")
     xlabel("Month")
-% --> (note that this may take multiple lines of code)
-
 %% 4. Fill missing values with the monthly climatological value
 % Find all values of NaN in tempData and replace them with the
 % corresponding climatological mean value calculated above.
-
 % We can do this by looping over each month in the year:
 for i=(1:12)
     indnan = find(isnan(tempData(:,i)) == 1)
     tempData(indnan,i)= tempMean(i)
-
 end 
-    
-    
+   
     %use the find and isnan functions to find the index location in the
     %array of data points with NaN values
     %check to make sure you understand what is happening in this line
@@ -115,6 +110,9 @@ figure(2); clf
 %temperature anomaly on the y axis
 scat = scatter(Year,TempAnnMeanAnomaly)
 hold on
+    title("Annual Temperature Anomaly from 1888-1991")
+    ylabel("Temperture Annual Anomaly (°C)")
+    xlabel("Year")
 %% 6b. Smooth the data by taking a 5-year running mean of the data to plot
 %This will even out some of the variability you observe in the scatter
 %plot. There are many methods for filtering data, but this is one of the
@@ -122,7 +120,9 @@ hold on
 %about how to use this function, type "help movmean" in the command window.
 movmeanavg = movmean(TempAnnMeanAnomaly, 5)
 plot(Year,movmeanavg, "r-")
-
+    title("Smoothed Temperature Mean Anomaly from 1888 to 1991 ")
+    ylabel("Average Temperature (°C)")
+    xlabel("Year")
 %Now add a line with this smoothed data to the scatter plot
 
 
@@ -156,12 +156,14 @@ plot(x,y)
 x = Year
 y = P_recent(1)*x +P_recent(2)
 plot(x,y)
-
+    title("Temperature Anomaly from 1888 to 1991 (°C)")
+    ylabel("Temperature (°C)")
+    xlabel("Year")
+    legend('Annual Anomaly', '5 Year Smoothed Anomaly', 'Anomaly Trend Over All Years', 'Anomaly Trend Over Recent Years (1960 to 1991)')
 hold off
 % Add a legend, axis labels, and a title to your temperature anomaly plot
 % winter = dec, jan, feb // summer = jun, july, aug
-
-%% 
+ 
 
 %%Extension: annuanl mean summer and winter, summer and winter anomaly, and trend
 % lines for summer and winter
