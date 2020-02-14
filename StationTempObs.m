@@ -167,16 +167,17 @@ hold off
 % lines for summer and winter
 
 summer=NaN(length(tempData),3)
+summer=[tempData(:,1),tempData(:,2),tempData(:,12)]
+% yearlysummer_mean= NaN(length(summer),1)
 
 for i=1:104
-
-summer=[tempData(:,1),tempData(:,2),tempData(:,12)]
-
-yearlysummer_mean= mean(summer(i:,1:3))
+yearlysummer_mean= mean(summer(i,:,1))
+TempSummerMeanAnomaly = yearlysummer_mean(i,:) - baselineMean
 end 
-% summer_mean=mean(monthlysummer_mean(1:3))
 
-% TempSummerMeanAnomaly = summer_mean - baselineMean
+% TempSummerMeanAnomaly=NaN(length(tempData),1)
+% TempSummerMeanAnomaly = yearlysummer_mean - baselineMean
+
 %want 104 differnt summer means to subtact -baseline
 % P_summer = polyfit (Year, TempSummerMeanAnomaly, 1)
 
