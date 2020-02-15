@@ -208,9 +208,8 @@ plot(x,y)
     xlabel("Year")
    
 x = Year
-y = P_recentsummer(1)*x +P_recentsummer(2)
-    plot(x,y)
-title("Temperature Anomaly from 1888 to 1991 (°C)")
+y = P_recentsummer(1)*x +P_recentsummer
+    title("Temperature Anomaly from 1888 to 1991 (°C)")
     ylabel("Temperature (°C)")
     xlabel("Year")
     legend('Summer Temperature Anomaly', '5 Year Smoothed Anomaly', 'Summer Anomaly Trend Over All Years (1888 to 1991)', 'Summer Anomaly Trend Over Recent Years (1981 to 1991)' )
@@ -235,6 +234,7 @@ plot(Year,movmeanwinter, "r-")
 x = Year
 y = P_winter(1)*x +P_winter(2)
 plot(x,y)
+
     title("Annual Winter Temperature Anomaly from 1888 to 1991 (°C)")
     ylabel("Temperature (°C)")
     xlabel("Year")
@@ -244,7 +244,6 @@ y = P_recentwinter(1)*x +P_recentwinter(2)
     title("Temperature Anomaly from 1888 to 1991 (°C)")
     ylabel("Temperature (°C)")
     xlabel("Year")
-    plot(x,y)
     legend('Winter Temperature Anomaly', '5 Year Smoothed Anomaly', 'Winter Anomaly Trend Over All Years (1888 to 1991)', 'Winter Anomaly Trend Over Recent Years (1981 to 1991)' )
 
    hold off
